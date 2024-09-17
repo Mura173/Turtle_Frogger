@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    public float speed = 5f;
+    public float minX, maxX, minY;
 
-    private float movX, movY;
     private Rigidbody2D rb;
+
+    [SerializeField]
+    private InputActionReference moveAction;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +24,35 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
+        CheckBounds();
     }
 
     void Movement()
     {
-        movX = Input.GetAxis("Horizontal");
-        movY = Input.GetAxis("Vertical");
+        Vector2 moveDirection = moveAction.action.ReadValue<Vector2>();
 
-        rb.velocity = new Vector2(movX * speed, movY * speed);
+        transform.Translate(moveDirection * speed * Time.deltaTime);
+    }
+
+    void CheckBounds()
+    {
+        Vector2 temp = transform.position;
+
+        if (temp.x > maxX)
+        {
+            temp.x = maxX;
+        }
+
+        if (temp.x < minX)
+        {
+            temp.x = minX;
+        }
+
+        if (temp.y <= minY)
+        {
+            temp.y = minY;
+        }
+
+        transform.position = temp;
     }
 }
