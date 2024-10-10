@@ -33,7 +33,7 @@ public class Garbage : MonoBehaviour
 
     IEnumerator DestroyGarbage()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         Destroy(gameObject);
     }
 }
