@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // Piscar
     public float blinkInterval;
     public int blinkCount;
-    public float minAlfa = 0.2f;
+    public float minAlpha = 0.2f;
 
     private Rigidbody2D rb;
     private Transform startPos;
@@ -83,11 +83,25 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         for (int i = 0; i < blinkCount; i++)
         {
-            sR.enabled = !sR.enabled;
+            // Mudando alfa da imagem
+            Color tempColor = sR.color;
+            tempColor.a = minAlpha;
+            sR.color = tempColor;
+
+            yield return new WaitForSeconds(blinkInterval);
+
+            // Restaura o alfa
+            tempColor.a = 1f;
+            sR.color = tempColor;
+
             yield return new WaitForSeconds(blinkInterval);
         }
 
-        sR.enabled = true;
+        // Garante que o sprite termine totalmente visível
+        Color finalColor = sR.color;
+        finalColor.a = 1f;
+        sR.color = finalColor;
+
         canMove = true;
     }
 
