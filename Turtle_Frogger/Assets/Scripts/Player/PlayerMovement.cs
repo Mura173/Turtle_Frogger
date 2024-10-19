@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float minAlpha = 0.2f;
 
     private Rigidbody2D rb;
-    private Transform startPos;
+    public Transform startPos;
 
     private SpriteRenderer sR;
     private Animator anim;
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         startPos = GameObject.Find("StartPos").transform;
         sR = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Movement();
             CheckBounds();
-        }       
+        }
     }
 
     void Movement()
