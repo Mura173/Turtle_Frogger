@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Points : MonoBehaviour
@@ -10,6 +12,7 @@ public class Points : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    public Animator youWinAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,21 @@ public class Points : MonoBehaviour
     void Update()
     {
         pointsText.text = "" + points;
+
+        EndGame();
+    }
+
+    void EndGame()
+    {
+        if (points >= 500)
+        {
+            youWinAnim.SetBool("Win", true);
+        }
+    }
+
+    public void Return()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,5 +47,5 @@ public class Points : MonoBehaviour
             points += 100;
             transform.position = playerMovement.startPos.transform.position;
         }
-    }
+    } 
 }
