@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private float targetTime = 10.0f;
+    private float targetTime = 40.0f;
 
     public Text timerText;
 
