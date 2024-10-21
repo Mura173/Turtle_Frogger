@@ -8,11 +8,13 @@ using UnityEngine.UI;
 public class Points : MonoBehaviour
 {
     public Text pointsText;
-    private int points = 0;
+    public int points = 0;
 
     private PlayerMovement playerMovement;
+    public Timer timer;
 
     public Animator youWinAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class Points : MonoBehaviour
         if (points >= 500)
         {
             youWinAnim.SetBool("Win", true);
+            timer.targetTime = 0.1f;
         }
     }
 

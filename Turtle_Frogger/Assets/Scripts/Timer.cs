@@ -6,16 +6,13 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private float targetTime = 40.0f;
+    public float targetTime = 40.0f;
 
     public Text timerText;
 
+    public Points pointsScript;
+
     public Animator youLoseAnim;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +33,8 @@ public class Timer : MonoBehaviour
 
     void TimeEnd()
     {
-        youLoseAnim.SetBool("Lose", true);
+        pointsScript.points = 0;
+        youLoseAnim.SetBool("Lose", true);       
     }
 
     public void JogarNovamente()
