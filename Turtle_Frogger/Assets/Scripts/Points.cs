@@ -50,5 +50,5 @@ public class Points : MonoBehaviour
             points += 100;
             transform.position = playerMovement.startPos.transform.position;
         }
-    } 
+    }
 }
