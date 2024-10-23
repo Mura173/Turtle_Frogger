@@ -35,6 +35,7 @@ public class Points : MonoBehaviour
         {
             youWinAnim.SetBool("Win", true);
             timer.targetTime = 0.1f;
+            playerMovement.canMove = false;
         }
     }
 

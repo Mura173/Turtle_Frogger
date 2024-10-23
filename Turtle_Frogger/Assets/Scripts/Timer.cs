@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     public Text timerText;
 
     public Points pointsScript;
+    public PlayerMovement playerMovement;
 
     public Animator youLoseAnim;
 
@@ -34,7 +35,9 @@ public class Timer : MonoBehaviour
     void TimeEnd()
     {
         pointsScript.points = 0;
-        youLoseAnim.SetBool("Lose", true);       
+        youLoseAnim.SetBool("Lose", true);
+        playerMovement.canMove = false;
+
     }
 
     public void JogarNovamente()
