@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private InputActionReference moveAction;
 
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
     public bool canMove = true;
 
     // Start is called before the first frame update
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         startPos = GameObject.Find("StartPos").transform;
         sR = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,6 +88,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator ResetAnimator()
     {
         canMove = false;
+
+        audioSource.PlayOneShot(deathSound);
+
         for (int i = 0; i < blinkCount; i++)
         {
             // Mudando alfa da imagem
