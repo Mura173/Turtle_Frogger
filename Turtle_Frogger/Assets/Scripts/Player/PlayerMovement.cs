@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveDirection = moveAction.action.ReadValue<Vector2>();
 
         transform.Translate(moveDirection * speed * Time.deltaTime);
+
+        anim.SetFloat("Movement", moveDirection.sqrMagnitude);
     }
 
     void CheckBounds()
